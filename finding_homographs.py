@@ -18,7 +18,7 @@ def remove_slashes(string_path):
 
 
     string_list =  [string+character for string in string_path.split() if string]
-
+ #comment
     
     print(string_list)
     for string in string_list:

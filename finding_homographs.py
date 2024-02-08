@@ -1,12 +1,17 @@
-# requirements:
-# let the user input a file
-# let the user input a second file
-# compare file paths, canonize (reduce to most condensed filepath)
-# return a message confirming or denying that the paths are homographs.
+""" 
+W05 Lab: Path Homograph
+Team members: Gage Smith, Vinnicius Castro,  
+
+requirements:
+let the user input a file
+let the user input a second file
+compare file paths, canonize (reduce to most condensed filepath)
+return a message confirming or denying that the paths are homographs.
+"""
 
 
 
-
+# canonicalization 
 def remove_slashes(string_path):
     # idea: split up the string along the backslashes, and then remove anything that begins with a period
     

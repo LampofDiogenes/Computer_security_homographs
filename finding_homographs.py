@@ -1,8 +1,14 @@
-# requirements:
-# let the user input a file
-# let the user input a second file
-# compare file paths, canonize (reduce to most condensed filepath)
-# return a message confirming or denying that the paths are homographs.
+""" 
+W05 Lab: Path Homograph
+Name: Vinnicius Castro
+
+
+requirements:
+let the user input a file
+let the user input a second file
+compare file paths, canonize (reduce to most condensed filepath)
+return a message confirming or denying that the paths are homographs.
+"""
 
 
 

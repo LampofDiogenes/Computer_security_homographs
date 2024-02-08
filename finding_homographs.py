@@ -23,13 +23,14 @@ def remove_slashes(string_path):
 
 
     string_list =  [string+character for string in string_path.split() if string]
- #comment
     
     print(string_list)
     for string in string_list:
         if (string == "./" or string == "../"):
             string_list.pop()
 
+def is_homograph(string1, string2):
+    # check if two strings are homographs by comparing their canonical forms
 
 
 

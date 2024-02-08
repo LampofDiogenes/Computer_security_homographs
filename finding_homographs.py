@@ -24,6 +24,11 @@ def remove_slashes(string_path):
     for string in string_list:
         if (string == "./" or string == "../"):
             string_list.pop()
+
+
+
+
+# we need a homograph function
     
     
     

@@ -6,7 +6,7 @@
 
 
 
-
+# canonicalization 
 def remove_slashes(string_path):
     # idea: split up the string along the backslashes, and then remove anything that begins with a period
     

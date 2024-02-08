@@ -1,6 +1,6 @@
 """ 
 W05 Lab: Path Homograph
-Name: Gage Smith, Vinnicius Castro,  
+Team members: Gage Smith, Vinnicius Castro,  
 
 requirements:
 let the user input a file

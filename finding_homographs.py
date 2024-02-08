@@ -43,6 +43,6 @@ def main():
     path_string = input()
     # Console.Readline()
     remove_slashes(path_string)
-
+    is_homograph(path1, path2)
 
 main()

@@ -1,3 +1,5 @@
+cwd = "c:/users/bob" # our cwd
+
 def canonicalize(string_path, cwd):
     string_path = ''.join('/' if c == '\\' else c for c in string_path) # Replace all \ with / in the path the user gives.
 
@@ -33,8 +35,7 @@ def are_homographs(filepath1, filepath2, cwd):
     return canonicalize(filepath1, cwd) == canonicalize(filepath2, cwd) # checks if the canonicalized versions are the same.
 
 def user_input():
-    cwd = "c:/users/bob" # our cwd
-    print(f"current working directory: {cwd}\n") # display it
+    print(f"\ncurrent working directory: {cwd}\n") # display it
     path_string = input("input a file path1: ") # get input
     path_string2 = input("input a file path2: ")
     if are_homographs(path_string, path_string2, cwd): # check if they are right or wrong.
@@ -42,13 +43,35 @@ def user_input():
     else:
         print("The file paths are not homographs :(")
 
+def test_homograph():
+    homographs = [("././test.txt", "test.txt"), 
+                  ("../bob/folder/test.txt", "./folder/test.txt"), 
+                  ("~/folder/test.txt", "../bob/folder/../folder/test.txt"),
+                  ("../../users/bob/test.txt", "test.txt"),
+                  ("./folder/..///test.txt", "test.txt")]
+    
+    nonhomographs = [("../text.txt", "text.txt"),
+                     ("/users/bob/../text.txt", "/text.txt"),
+                     ("/users/bob/../text.txt", "/users/alice/text.txt"),
+                     ("../test.txt", "test.txt"),
+                     ("../bob/./././/../test.txt", "../../test.txt")]
+    
+    print("\nRunning homograph test...")
+    for file1, file2 in homographs:
+        assert are_homographs(file1, file2, cwd)
+
+    print("Running non-homograph test...")
+    for file1, file2 in nonhomographs:
+        assert not are_homographs(file1, file2, cwd)
+    
+    print("Success!")
 
 def main():
     menu = True
     while menu:
-        choice = str(input("1. Run test.\n2. Input two files.\nq. Quit.\nChoice: "))
+        choice = str(input("\n1. Run test.\n2. Input two files.\nq. Quit.\nChoice: "))
         if choice == '1':
-            pass
+            test_homograph()
         elif choice == '2':
             user_input()
         elif choice == 'q':

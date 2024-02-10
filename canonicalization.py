@@ -2,6 +2,7 @@ cwd = "c:/users/bob" # our cwd
 
 def canonicalize(string_path, cwd):
     string_path = ''.join('/' if c == '\\' else c for c in string_path) # Replace all \ with / in the path the user gives.
+    string_path = ''.join('' if c == ' ' else c for c in string_path) # Replace all ' ' with '' in the path the user gives.
 
     full_relative = string_path.lower() # convert the path to lowercase, and set it as the full relative.
 
@@ -20,7 +21,7 @@ def canonicalize(string_path, cwd):
         if item == "~":
             pass # dont do anythin if a ~ is present, we are already in the directory.
         elif item == "..":
-            if len(absolutepath) > 1:
+            if len(absolutepath) > 0:
                 absolutepath.pop(-1) # Remove the last directory input.
         elif item == ".":
             pass # nothing happens
@@ -48,17 +49,27 @@ def test_homograph():
                   ("../bob/folder/test.txt", "./folder/test.txt"), 
                   ("~/folder/test.txt", "../bob/folder/../folder/test.txt"),
                   ("../../users/bob/test.txt", "test.txt"),
-                  ("./folder/..///test.txt", "test.txt")]
+                  ("./folder/..///test.txt", "test.txt"),
+                  ("././././folder/test.txt", "../bob/folder/test.txt"),
+                  ("~/test.txt", "~/folder/../test.txt"),
+                  ("../test.txt", "../../users/test.txt"),
+                  ("test.txt", "../bob/test.txt"),
+                  ("./././test.txt", "./test.txt")]
     
     nonhomographs = [("../text.txt", "text.txt"),
                      ("/users/bob/../text.txt", "/text.txt"),
                      ("/users/bob/../text.txt", "/users/alice/text.txt"),
                      ("../test.txt", "test.txt"),
-                     ("../bob/./././/../test.txt", "../../test.txt")]
+                     ("../bob/./././/../test.txt", "../../test.txt"),
+                     ("bob/test.txt", "test.txt"),
+                     ("./test.txt", "C:/users/karen/test.txt"),
+                     ("../test.txt","test.txt"),
+                     ("C:/users/bob/test.txt","c:/users/karen/test.txt"),
+                     ("test.txt", "../bob/../.././users/test.txt")]
     
     print("\nRunning homograph test...")
     for file1, file2 in homographs:
-        assert are_homographs(file1, file2, cwd)
+        assert are_homographs(str(file1), str(file2), cwd)
 
     print("Running non-homograph test...")
     for file1, file2 in nonhomographs:

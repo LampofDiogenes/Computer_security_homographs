@@ -3,6 +3,7 @@ cwd = "c:/users/bob" # our cwd
 def canonicalize(string_path, cwd):
     string_path = ''.join('/' if c == '\\' else c for c in string_path) # Replace all \ with / in the path the user gives.
     string_path = ''.join('' if c == ' ' else c for c in string_path) # Replace all ' ' with '' in the path the user gives.
+    string_path = ''.join('c' if c == 'C' else c for c in string_path) # Replace all C with c in the path the user gives.
 
     full_relative = string_path.lower() # convert the path to lowercase, and set it as the full relative.
 

@@ -1,3 +1,8 @@
+"""
+W06 Lab:  SQL Injection Mitigation
+Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
+"""
+
 def generate_sql_string(username, password):
     return f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
 

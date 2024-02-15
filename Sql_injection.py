@@ -11,50 +11,68 @@ def strong_mitigation(username, password):
 
 def test_valid(function):
 
-    # test 1
-    username = "camlybb123"
-    password = "p@ssword"
-
-    print(function(username, password))
-
-    # test 2
-    username = ""
-    password = ""
-
-    print(function(username, password))
-
-
-    # test 3
-    username = ""
-    password = ""
-
-    print(function(username, password))
-
-
-    # test 4
-    username = ""
-    password = ""
-
-    print(function(username, password))
-
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
 def test_tautology(function):
-    pass
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
 def test_union(function):
-    pass
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
 def test_add_state(function):
-    pass
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
 def test_comment(function):
-    pass
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
 
-print("Test valid - no mitigation")
-test_valid(generate_sql_string)
-print("Test valid - weak mitigation")
-test_valid(weak_mitigation)
-print("Test valid - strong mitigation")
-test_valid(strong_mitigation)
+funcitons = [test_valid, test_tautology, test_comment, test_union, test_add_state]
+for item in funcitons:
+    print("\n")
+    print(str(item.__name__), "- no mitigation")
+    item(generate_sql_string)
+    print(str(item.__name__), "- weak mitigation")
+    item(weak_mitigation)
+    print(str(item.__name__), "- strong mitigation")
+    item(strong_mitigation)
 

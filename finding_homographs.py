@@ -47,7 +47,26 @@ def remove_slashes(string_path):
 
     return true_string
     
-    
+def compare_strings(string1, string2):
+    # Convert both strings to lowercase to make the comparison case-insensitive
+    string1 = string1.lower()
+    string2 = string2.lower()
+
+    # Remove any whitespace from both strings
+    string1 = string1.strip()
+    string2 = string2.strip()
+
+    # If the lengths of the strings are different, they can't be the same
+    if len(string1) != len(string2):
+        return False
+
+    # Iterate through each character in the strings and compare them
+    for char1, char2 in zip(string1, string2):
+        if char1 != char2:
+            return False
+
+    # If all characters match, return True
+    return True
     
 def main():
     print()
@@ -56,6 +75,11 @@ def main():
     # Console.Readline()
     new_string = remove_slashes(path_string)
     print(f"canonical string: {new_string}")
+    if compare_strings(path_string, new_string):
+        print("The file paths are homographs.")
+    else:
+        print("The file paths are not homographs.")
+
     print()
 
 main()

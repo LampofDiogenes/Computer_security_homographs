@@ -1,41 +1,91 @@
+"""
+W06 Lab:  SQL Injection Mitigation
+Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
+"""
 
+<<<<<<< HEAD
 '''
 W06 Lab: Path SQL Injection Mitigation
 Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
 
 injection planning 
+=======
+def generate_sql_string(username, password):
+    return f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+>>>>>>> d6a7572bb07612c76c111feeb909d58bee91235d
 
-take 2 strings from user (username and password)
+def weak_mitigation(username, password):
+    # do weak mitigation
+    return generate_sql_string(username, password)
 
-show raw unfiltered atttack
+def strong_mitigation(username, password):
+    # do strong mitigation
+    return generate_sql_string(username, password)
 
-have 2 functions (weak and strong filtering)
-func1: weak blacklists certain characters (return string)
-func2: strong whitelists certain characters (return string)
-'''
+def test_valid(function):
 
-def take_info():
-    username = input("please input a username")
-    password = input("please input a password")
-    return username,password
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
-def weak_injection(user_entry):
+def test_tautology(function):
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
-    for character in user_entry:
-        if character == '':
-            user_entry.pop(character)
+def test_union(function):
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
-def strong_injection(user_entry):
-    character_white_list = ["a","b","c",'d','e','f','g','h','i','j','k','l','m','n','o','p','q',
-                  'r','s','t','u','v','w','x','y','z',' ']
-    character_number_list = ['1','2','3','4','5','6','7','8','9','0']
+def test_add_state(function):
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
-    for character in user_entry:
-        if (character not in character_white_list and character not in character_number_list):
-            return "invalid character in submission"
-        else:
-            pass
-        
+def test_comment(function):
+    # tests
+    test_cases = [
+    ("camlybb123","p@ssword"),
+    (" ", " "),
+    (" ", " "),
+    (" ", " ")]
+    
+    for username, password in test_cases:
+        print(function(username, password))
 
 
-def test_cases():
+funcitons = [test_valid, test_tautology, test_comment, test_union, test_add_state]
+for item in funcitons:
+    print("\n")
+    print(str(item.__name__), "- no mitigation")
+    item(generate_sql_string)
+    print(str(item.__name__), "- weak mitigation")
+    item(weak_mitigation)
+    print(str(item.__name__), "- strong mitigation")
+    item(strong_mitigation)
+

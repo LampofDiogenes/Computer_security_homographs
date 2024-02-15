@@ -25,7 +25,7 @@ def remove_slashes(string_path):
     # for reference
     print(f"Original path: {string_path}")
 
-    string_list = string_path.split(backslash)
+    string_list = string_path.split(slash)
     print(f"split path: {string_list}")
 
     for item in string_list:
@@ -52,7 +52,7 @@ def remove_slashes(string_path):
 def main():
     print()
     print("input a file path")
-    path_string = "C:\\users\..\\path.py" #input()
+    path_string = "C:/users/..//path.py" #input()
     # Console.Readline()
     new_string = remove_slashes(path_string)
     print(f"canonical string: {new_string}")

@@ -1,8 +1,3 @@
-"""
-W06 Lab:  SQL Injection Mitigation
-Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
-"""
-
 '''
 W06 Lab: Path SQL Injection Mitigation
 Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford

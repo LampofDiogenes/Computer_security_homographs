@@ -3,8 +3,16 @@ W06 Lab:  SQL Injection Mitigation
 Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
 """
 
+<<<<<<< HEAD
+'''
+W06 Lab: Path SQL Injection Mitigation
+Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
+
+injection planning 
+=======
 def generate_sql_string(username, password):
     return f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+>>>>>>> d6a7572bb07612c76c111feeb909d58bee91235d
 
 def weak_mitigation(username, password):
     # do weak mitigation

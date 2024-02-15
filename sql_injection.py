@@ -1,5 +1,8 @@
 
 '''
+W06 Lab: Path SQL Injection Mitigation
+Team members: Cameron Lybbert, Gage Smith, Vinnicius Castro, Kaleb Bradford
+
 injection planning 
 
 take 2 strings from user (username and password)

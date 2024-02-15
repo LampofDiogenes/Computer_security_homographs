@@ -7,11 +7,31 @@ def generate_sql_string(username, password):
     return f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
 
 def weak_mitigation(username, password):
-    # do weak mitigation
+    for character in username:
+        if character == '':
+            username.pop(character)
+    for character in password:
+        if character == '':
+            password.pop(character)
     return generate_sql_string(username, password)
 
 def strong_mitigation(username, password):
-    # do strong mitigation
+    character_white_list = ["a","b","c",'d','e','f','g','h','i','j','k','l','m','n','o','p','q',
+                  'r','s','t','u','v','w','x','y','z',' ']
+    character_number_list = ['1','2','3','4','5','6','7','8','9','0']
+
+    for character in username:
+        if (character not in character_white_list and character not in character_number_list):
+            return "invalid character in submission"
+        else:
+            pass
+
+    for character in password:
+        if (character not in character_white_list and character not in character_number_list):
+            return "invalid character in submission"
+        else:
+            pass
+
     return generate_sql_string(username, password)
 
 def test_valid(function):
@@ -29,7 +49,7 @@ def test_valid(function):
 def test_tautology(function):
     # tests
     test_cases = [
-    ("camlybb123","p@ssword"),
+    ("camlybb123","p@ssword' OR 'x' == 'x"),
     (" ", " "),
     (" ", " "),
     (" ", " ")]
@@ -62,7 +82,7 @@ def test_add_state(function):
 def test_comment(function):
     # tests
     test_cases = [
-    ("camlybb123","p@ssword"),
+    ("Root';--","nothing"),
     (" ", " "),
     (" ", " "),
     (" ", " ")]

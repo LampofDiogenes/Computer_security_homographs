@@ -54,9 +54,9 @@ def test_valid(function):
     # tests
     test_cases = [
     ("camlybb123","p@ssword"),
-    (" ", " "),
-    (" ", " "),
-    (" ", " ")]
+    ("test1", "fireball"),
+    ("test1", "tequila"),
+    ("test3", "ba,nananana")]
     
     for username, password in test_cases:
         print(function(username, password))

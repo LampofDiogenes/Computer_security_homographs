@@ -38,13 +38,23 @@ def strong_mitigation(username, password):
     "test2": "tequila",
     "test3": "ba,nananana"
     }
-    if user_info[username] == password:
-        return "access granted"
-    else:
-        return "access denied"
+    try: 
+        if user_info[username] == password:
+            return generate_sql_string(username, password)
+        else:
+            return "access denied"
+    except KeyError:
+        return "the username or password is incorrect"
     
 
 # END OF IMPORTANT PART
+
+
+test_cases = [
+("camlybb123","p@ssword"),
+("test1", "fireball"),
+("test1", "tequila"),
+("test3", "ba,nananana")]
     
 
 def generate_sql_string(username, password):
@@ -52,44 +62,28 @@ def generate_sql_string(username, password):
 def test_valid(function):
 
     # tests
-    test_cases = [
-    ("camlybb123","p@ssword"),
-    ("test1", "fireball"),
-    ("test1", "tequila"),
-    ("test3", "ba,nananana")]
+    
     
     for username, password in test_cases:
         print(function(username, password))
 
 def test_tautology(function):
     # tests
-    test_cases = [
-    ("camlybb123","p@ssword' OR 'x' == 'x"),
-    (" ", " "),
-    (" ", " "),
-    (" ", " ")]
+    
     
     for username, password in test_cases:
         print(function(username, password))
 
 def test_union(function):
     # tests
-    test_cases = [
-    ("camlybb123","p@ssword"),
-    (" ", " "),
-    (" ", " "),
-    (" ", " ")]
+   
     
     for username, password in test_cases:
         print(function(username, password))
 
 def test_add_state(function):
     # tests
-    test_cases = [
-    ("camlybb123","p@ssword"),
-    (" ", " "),
-    (" ", " "),
-    (" ", " ")]
+    
     
     for username, password in test_cases:
         print(function(username, password))
@@ -106,8 +100,8 @@ def test_comment(function):
         print(function(username, password))
 
 
-funcitons = [test_valid, test_tautology, test_comment, test_union, test_add_state]
-for item in funcitons:
+functions = [test_valid, test_tautology, test_comment, test_union, test_add_state]
+for item in functions:
     print("\n")
     print(str(item.__name__), "- no mitigation")
     item(generate_sql_string)

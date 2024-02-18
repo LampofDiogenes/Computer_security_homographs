@@ -15,17 +15,13 @@ def weak_mitigation(username, password):
     # if we find a blocked character in the username or password, 
     # stop adding the charaters to the mitigated version
     for character in username:
-        if character == "'":
-            break
-        elif character == ';':
+        if character == "'" or character == ';' or character == '-':
             break
         else:
             mitigated_username += character
     
     for character in password:
-        if character == "'":
-            break
-        elif character == ';':
+        if character == "'" or character == ';' or character == '-':
             break
         else:
             mitigated_password += character

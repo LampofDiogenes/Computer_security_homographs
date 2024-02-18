@@ -11,18 +11,12 @@ func1: weak blacklists certain characters (return string)
 func2: strong whitelists certain characters (return string)
 '''
 
-def weak_mitigation(username, password):
-    for character in username:
-        if character == '':
-            username.pop(character)
-    for character in password:
-        if character == '':
-            password.pop(character)
-    return generate_sql_string(username, password)
-
-
-
-# THIS IS THE IMPORTANT PART RIGHT UNDERNEATH HERE
+def weak_mitigation(input_str1, input_str2):
+    # find any ' in the string, and then delete it
+    input1 = input_str1.replace("'", "")
+    input2 = input_str2.replace("'", "")
+    sanitized_input = generate_sql_string(input1, input2)
+    return sanitized_input
 
 
 def strong_mitigation(username, password):
@@ -32,6 +26,9 @@ def strong_mitigation(username, password):
     # stored in the python file directly. this prevents any sql attack, but may open other attacks 
     # targetting the python file directly
 
+
+    # summary: make a python database (just for passwords) and only give information if 
+    # the data matches the python database. should entirely ignore sql problems
     user_info = {
     "camlybb123":"p@ssword",
     "test1": "fireball",
@@ -45,9 +42,6 @@ def strong_mitigation(username, password):
             return "access denied"
     except KeyError:
         return "the username or password is incorrect"
-    
-
-# END OF IMPORTANT PART
 
 
 test_cases = [

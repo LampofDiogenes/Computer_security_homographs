@@ -1,5 +1,5 @@
 def weak_mitigation(input_str):
-    sanitized_input = input_str.replace("'", "''")
+    sanitized_input = input_str.replace("'", "")
     return sanitized_input
 
 # Test weak mitigation function

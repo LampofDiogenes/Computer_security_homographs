@@ -14,7 +14,12 @@ func2: strong whitelists certain characters (return string)
 def weak_mitigation(input_str1, input_str2):
     # find any ' in the string, and then delete it
     input1 = input_str1.replace("'", "")
-    input2 = input_str2.replace("'", "")
+    input1 = input_str1.replace("--", "")
+    input1 = input_str1.replace(";", "")
+    input1 = input_str2.replace("'", "")
+    input2 = input_str2.replace("--", "")
+    input2 = input_str2.replace(";", "")
+
     sanitized_input = generate_sql_string(input1, input2)
     return sanitized_input
 
@@ -46,9 +51,9 @@ def strong_mitigation(username, password):
 
 test_cases = [
 ("camlybb123","p@ssword"),
-("test1", "fireball"),
-("test1", "tequila"),
-("test3", "ba,nananana")]
+("test1", "fireball; Get me data lol --"),
+("test1", "tequila'; if x == x, SELECT * FROM users"),
+("test3", "ba,nananana' UNION SELECT * from users")]
     
 
 def generate_sql_string(username, password):

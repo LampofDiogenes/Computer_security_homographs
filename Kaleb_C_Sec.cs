@@ -29,8 +29,17 @@ using System.Collections.Generic;
         }
     private static void Main()
     {
-        var result = SanitizeData("fireball:--");
-        Console.Writeline(result);
+
+
+        // Sanitizing the data problem
+        var oldData = "fireball:--";
+        Console.Write("Before Data: ");
+        Console.Writeline(oldData);
+        var betterData = SanitizeData(oldData);
+        Console.Writeline("After Sanitizing: ");
+        Console.WriteLine(betterData);
+
+        // Other problem that needs to be solved
     }
     
     

@@ -27,20 +27,30 @@ using System.Collections.Generic;
             }
             return returnString;
         }
-    private static void Main()
-    {
+        private static string OtherSolution()
+        {
+
+        }
+        
+        
+        
+        private static void Main()
+        {
 
 
-        // Sanitizing the data problem
-        var oldData = "fireball:--";
-        Console.Write("Before Data: ");
-        Console.Writeline(oldData);
-        var betterData = SanitizeData(oldData);
-        Console.Writeline("After Sanitizing: ");
-        Console.WriteLine(betterData);
+            // Sanitizing the data problem
+            var oldData = "fireball:--";
+            Console.Write("Before Data: ");
+            Console.Writeline(oldData);
+            var betterData = SanitizeData(oldData);
+            Console.Writeline("After Sanitizing: ");
+            Console.WriteLine(betterData);
 
-        // Other problem that needs to be solved
-    }
+            // Other problem that needs to be solved
+
+
+            
+        }
     
     
     }

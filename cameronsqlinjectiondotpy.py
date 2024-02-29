@@ -8,36 +8,37 @@ def generate_sql_string(username, password):
     return f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
 
 def weak_mitigation(username, password):
+    # setup
     mitigated_username = ''
     mitigated_password = ''
 
+    # if we find a blocked character in the username or password, 
+    # stop adding the charaters to the mitigated version
     for character in username:
-        if character == "'":
-            break
-        elif character == ';':
+        if character == "'" or character == ';' or character == '-':
             break
         else:
             mitigated_username += character
     
     for character in password:
-        if character == "'":
-            break
-        elif character == ';':
+        if character == "'" or character == ';' or character == '-':
             break
         else:
             mitigated_password += character
 
-
+    # return a generated string with the mitigated username and password.
     return generate_sql_string(mitigated_username, mitigated_password)
 
 def strong_mitigation(username, password):
     
+    # setup
     allow_list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
                   'r','s','t','u','v','w','x','y','z',' ', '!', '@', '#', '$', '%','^','&','*', ',', 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
     
     mitigated_username = ''
     mitigated_password = ''
     
+    # If the character is not in the allow list, stop adding character to the mitigated version.
     for character in username:
         if character.lower() not in allow_list:
             break
@@ -50,6 +51,7 @@ def strong_mitigation(username, password):
         else:
             mitigated_password += character
 
+    # return a string generated with the mitigated username and password.
     return generate_sql_string(mitigated_username, mitigated_password)
 
 def test_valid(function):
